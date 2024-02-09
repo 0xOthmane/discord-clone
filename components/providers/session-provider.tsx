@@ -1,0 +1,12 @@
+"use client";
+
+import { Session } from "next-auth";
+import { PropsWithChildren } from "react";
+import { SessionProvider as Provider } from "next-auth/react";
+
+interface Props extends PropsWithChildren {
+  session: Session | null;
+}
+export default function SessionProvider({ children, session }: Props) {
+  return <Provider session={session}>{children}</Provider>;
+}
