@@ -1,5 +1,5 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import db from "./db";
 import { compare } from "bcrypt";
@@ -70,3 +70,8 @@ export const options: NextAuthOptions = {
   //   },
   // },
 };
+
+export const getUserAuth = async()=>{
+  const session = await getServerSession(options)
+  return session?.user
+}
