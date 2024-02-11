@@ -12,7 +12,7 @@ export default async function Home() {
     <div className="">
       <h1 className="text-3xl font-bold text-indigo-500">Discord clone</h1>
       <ModeToggle />
-      <InitialModal />
+      {/* <InitialModal /> */}
       {user ? (
         // <div>
           //* {session.user.username} */

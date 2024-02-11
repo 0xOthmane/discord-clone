@@ -79,9 +79,14 @@ export const getUserAuth = async () => {
 export const currentProfile = async () => {
   const user = await getUserAuth();
   if (!user) return null;
+  const userDb = await db.user.findUnique({
+    where:{
+      username: user.username
+    }
+  })
   const profile = await db.profile.findUnique({
     where: {
-      userId: user.id,
+      userId: userDb?.id,
     },
   });
   return profile;

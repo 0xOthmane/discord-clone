@@ -7,6 +7,7 @@ import SessionProvider from "./../components/providers/session-provider";
 import Header from "@/components/organisms/Header";
 import { getServerSession } from "next-auth";
 import { options } from "@/lib/auth";
+import { ModalProvider } from "@/components/providers/modal-provider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(options);
+  // const session = await getServerSession(options);
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
@@ -30,6 +31,7 @@ export default async function RootLayout({
           enableSystem
           storageKey="discord-theme"
         >
+          <ModalProvider/>
           {/* <SessionProvider session={session}>
             <Header />
           </SessionProvider> */}

@@ -5,18 +5,23 @@ import { redirect } from "next/navigation";
 export const initProfile = async () => {
   const user = await getUserAuth();
   if (!user) return redirect('/login');
+  const userDb = await db.user.findUnique({
+    where:{
+      username: user.username
+    }
+  })
   const profile = await db.profile.findUnique({
     where: {
-      userId: user.id,
+      userId: userDb?.id ,
     },
   });
   if (profile) return profile;
   const newProfile = await db.profile.create({
     data: {
-      userId: user.id,
-      name: user.username,
-      imageUrl: user.image!,
-      email: user.email!,
+      userId: userDb?.id,
+      name: userDb?.username!,
+      imageUrl: "",
+      email: userDb?.email!,
     },
   });
   return newProfile;
