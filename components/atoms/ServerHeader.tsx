@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { ServerWithMembersWithProfiles } from "@/types/types";
 import { MemberRole } from "@prisma/client";
@@ -19,6 +19,7 @@ import {
   Users,
 } from "lucide-react";
 import { useModal } from "@/hooks/useModalStore";
+import { on } from "events";
 
 interface ServerHeaderProps {
   server: ServerWithMembersWithProfiles;
@@ -50,7 +51,10 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
           </DropdownMenuItem>
         )}
         {isAdmin && (
-          <DropdownMenuItem className="px-3 py-2 cursor-pointer">
+          <DropdownMenuItem
+            onClick={() => onOpen("editServer", { server })}
+            className="px-3 py-2 cursor-pointer"
+          >
             Server Settings
             <Settings className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
