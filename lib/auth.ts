@@ -71,7 +71,18 @@ export const options: NextAuthOptions = {
   // },
 };
 
-export const getUserAuth = async()=>{
-  const session = await getServerSession(options)
-  return session?.user
-}
+export const getUserAuth = async () => {
+  const session = await getServerSession(options);
+  return session?.user;
+};
+
+export const currentProfile = async () => {
+  const user = await getUserAuth();
+  if (!user) return null;
+  const profile = await db.profile.findUnique({
+    where: {
+      userId: user.id,
+    },
+  });
+  return profile;
+};
