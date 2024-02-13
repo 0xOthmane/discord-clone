@@ -1,9 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CreateServerModal } from "../molecules/CreateServerModal";
-import { InviteModal } from "../molecules/InviteModal";
-import { EditServerModal } from "../molecules/EditServerModal";
+import { CreateServerModal } from "@/components/molecules/CreateServerModal";
+import { InviteModal } from "@/components/molecules/InviteModal";
+import { EditServerModal } from "@/components/molecules/EditServerModal";
+import { MembersModal } from "@/components/molecules/MembersModal";
+import { CreateChannelModal } from "@/components/molecules/CreateChannelModal";
+import { LeaveServerModal } from "@/components/molecules/LeaveServerModal";
+import { DeleteServerModal } from "@/components/molecules/DeleteServerModal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,6 +20,10 @@ export const ModalProvider = () => {
       <CreateServerModal />
       <InviteModal />
       <EditServerModal />
+      <MembersModal />
+      <CreateChannelModal />
+      <LeaveServerModal />
+      <DeleteServerModal />
     </>
   );
 };
