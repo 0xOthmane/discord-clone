@@ -1,6 +1,40 @@
-const ChannelIdPage = () => {
-    return <div>Channel id</div>;
+import { currentProfile } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import db from "@/lib/db";
+import ChatHeader from "@/components/atoms/ChatHeader";
+
+interface ChannelIdPageProps {
+  params: {
+    serverId: string;
+    channelId: string;
   };
-  
-  export default ChannelIdPage;
-  
+}
+
+const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
+  const profile = await currentProfile();
+  if (!profile) return redirect("/login");
+  const channel = await db.channel.findUnique({
+    where: {
+      id: params.channelId,
+    },
+  });
+  const member = await db.member.findFirst({
+    where: {
+      serverId: params.serverId,
+      profileId: profile.id,
+    },
+  });
+  if (!channel || !member) redirect("/");
+
+  return (
+    <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
+      <ChatHeader
+        name={channel.name}
+        serverId={channel.serverId}
+        type="channel"
+      />
+    </div>
+  );
+};
+
+export default ChannelIdPage;
