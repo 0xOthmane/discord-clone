@@ -8,6 +8,8 @@ import { MembersModal } from "@/components/molecules/MembersModal";
 import { CreateChannelModal } from "@/components/molecules/CreateChannelModal";
 import { LeaveServerModal } from "@/components/molecules/LeaveServerModal";
 import { DeleteServerModal } from "@/components/molecules/DeleteServerModal";
+import { DeleteChannelModal } from "@/components/molecules/DeleteChannelModal";
+import { EditChannelModal } from "@/components/molecules/EditChannelModal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -24,6 +26,8 @@ export const ModalProvider = () => {
       <CreateChannelModal />
       <LeaveServerModal />
       <DeleteServerModal />
+      <DeleteChannelModal />
+      <EditChannelModal />
     </>
   );
 };
