@@ -10,6 +10,7 @@ import { LeaveServerModal } from "@/components/molecules/LeaveServerModal";
 import { DeleteServerModal } from "@/components/molecules/DeleteServerModal";
 import { DeleteChannelModal } from "@/components/molecules/DeleteChannelModal";
 import { EditChannelModal } from "@/components/molecules/EditChannelModal";
+import { MessageFileModal } from "../molecules/MessageFileModal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -28,6 +29,7 @@ export const ModalProvider = () => {
       <DeleteServerModal />
       <DeleteChannelModal />
       <EditChannelModal />
+      <MessageFileModal />
     </>
   );
 };
