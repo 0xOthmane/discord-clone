@@ -1,9 +1,7 @@
-import { options } from "@/lib/auth";
+import { currentProfilePages } from "@/lib/current-profile-pages";
+import db from "@/lib/db";
 import { NextApiResponseServerIo } from "@/types/types";
 import { NextApiRequest } from "next";
-import db from "@/lib/db";
-import { getServerSession } from "next-auth";
-import { currentProfilePages } from "@/lib/current-profile-pages";
 
 export default async function handler(
   req: NextApiRequest,
