@@ -4,6 +4,11 @@ import { NextApiRequest } from "next";
 import db from "@/lib/db";
 import { MemberRole } from "@prisma/client";
 
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+}
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponseServerIo
@@ -93,10 +98,10 @@ export default async function handler(
           member: { include: { profile: true } },
         },
       });
-      const updateKey = `chat:${channelId}:messages:update`;
-      res?.socket?.server?.io?.emit(updateKey, message);
-      return res.status(200).json(message);
     }
+    const updateKey = `chat:${channelId}:messages:update`;
+    res?.socket?.server?.io?.emit(updateKey, message);
+    return res.status(200).json(message);
   } catch (error) {
     console.log("[MESSAGE_ID]", error);
     return res.status(500).json({ error: "Internal Error" });

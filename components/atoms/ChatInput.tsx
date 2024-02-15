@@ -1,15 +1,15 @@
 "use client";
-import { useModal } from "@/hooks/useModalStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
-import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
-import qs from "query-string";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem } from "../ui/form";
+import { Plus, Smile } from "lucide-react";
 import { Input } from "../ui/input";
+import qs from "query-string";
+import axios from "axios";
+import { useModal } from "@/hooks/useModalStore";
 import EmojiPicker from "./EmojiPicker";
+import { useRouter } from "next/navigation";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -70,6 +70,7 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                     placeholder={`Message ${
                       type === "conversation" ? name : "#" + name
                     }`}
+                    autoComplete="off"
                     {...field}
                   />
                   <div className="absolute top-7 right-8">
