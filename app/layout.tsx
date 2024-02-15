@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import { SocketProvider } from "@/components/providers/socket-provider";
+import { QueryProvider } from "@/components/providers/query-provider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -27,11 +29,13 @@ export default async function RootLayout({
           enableSystem
           storageKey="discord-theme"
         >
-          <ModalProvider/>
-          {/* <SessionProvider session={session}>
+          <SocketProvider>
+            <ModalProvider />
+            {/* <SessionProvider session={session}>
             <Header />
           </SessionProvider> */}
-          <main>{children}</main>
+            <QueryProvider>{children}</QueryProvider>
+          </SocketProvider>
         </ThemeProvider>
       </body>
     </html>
